@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { SmoothScroll } from '../../globalFunc';
+import { SmoothScroll } from '../../../globalFunc';
 import './about.scss';
 
 const About = props => {
