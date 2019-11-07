@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { adjustFontSize } from './globalFunc';
+import './scss/style.scss';
 
 // Component
 import Nav from './Component/Nav';
