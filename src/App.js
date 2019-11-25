@@ -2,11 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { adjustFontSize } from './globalFunc';
-
-// Component
-import Nav from './Component/Nav';
-import Home from './Component/page/Home';
-import About from './Component/page/About';
+import AsyncLoadComponent from './Component/AsyncLoadComponent';
 
 
 const App = () => {
@@ -24,13 +20,18 @@ const App = () => {
     }
   },[]);
 
+  // Async to load component
+  const Nav = AsyncLoadComponent(import('./Component/Nav'));
+  const Home = AsyncLoadComponent(import('./Component/page/Home'));
+  const About = AsyncLoadComponent(import('./Component/page/About'));
+
 
   const Pages = props => {
 
     // update language state when language is zh from started
     if(props.match.params.language !== language)
       dispatch({type: 'UPDATE_LANGUAGE'})
-
+      
     return (
       <div id="bodyWrap" className={`body_wrap ${language}`}>
         <Nav {...props} />
