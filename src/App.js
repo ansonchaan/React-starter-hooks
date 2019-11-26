@@ -4,6 +4,10 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import { adjustFontSize } from './globalFunc';
 import AsyncLoadComponent from './Component/AsyncLoadComponent';
 
+// Async to load component
+const Nav = AsyncLoadComponent(import('./Component/Nav'));
+const Home = AsyncLoadComponent(import('./Component/page/Home'));
+const About = AsyncLoadComponent(import('./Component/page/About'));
 
 const App = () => {
   const language = useSelector(state => state.language);
@@ -20,10 +24,6 @@ const App = () => {
     }
   },[]);
 
-  // Async to load component
-  const Nav = AsyncLoadComponent(import('./Component/Nav'));
-  const Home = AsyncLoadComponent(import('./Component/page/Home'));
-  const About = AsyncLoadComponent(import('./Component/page/About'));
 
 
   const Pages = props => {
