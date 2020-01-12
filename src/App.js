@@ -26,35 +26,24 @@ const App = () => {
 
 
 
-  const Pages = props => {
-
-    // update language state when language is zh from started
-    if(props.match.params.language !== language)
-      dispatch({type: 'UPDATE_LANGUAGE'})
-      
-    return (
-      <div id="bodyWrap" className={`body_wrap ${language}`}>
-        <Nav {...props} />
-        <Switch>
-          <Route exact path="/:language/" component={Home} />
-          <Route exact path="/:language/about/" component={About} />
-          <Redirect from="*" to={`/${language}/`} />
-        </Switch>
-      </div>
-    )
-  }
-
-
   return (
     <Router>
       <Route exact path="/:language?/:section?/"
         render={ props => {
-          if(/^(en|zh)$/.test(props.match.params.language)){
-            return <Pages {...props} />
-          }
-          else{
+          if(!/^(en|zh)$/.test(props.match.params.language)){
             return <Redirect from="*" to={`/${language}/`} />
           }
+
+          return (
+            <div id="bodyWrap" className={`body_wrap ${language}`}>
+              <Nav {...props} />
+              <Switch>
+                <Route exact path="/:language/" component={Home} />
+                <Route exact path="/:language/about/" component={About} />
+                <Redirect from="*" to={`/${language}/`} />
+              </Switch>
+            </div>
+          )
         }
       }>
       </Route>
