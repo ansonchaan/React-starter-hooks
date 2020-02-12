@@ -1,7 +1,14 @@
-@import "./_settings";
+@import "./global/functions";
+@import "./global/reset";
+@import "./global/fonts";
+@import "./global/color";
 
 // Common
 @import "./common";
+
+// Pages
+@import "../Component/Nav/nav.scss";
+@import "../Component/page/Home/home.scss";
 
 // IE
 // @import './global/ie';

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { SmoothScroll } from '../../../globalFunc';
-import './home.scss';
 
 const Home = props => {
     const count = useSelector(state => state.count);
@@ -20,7 +19,7 @@ const Home = props => {
 
     return (
         <div id="home">
-            <div id="scrollWrap">
+            <div id="scrollWrap" className="blue">
                 Home {count}
             </div>
         </div>
