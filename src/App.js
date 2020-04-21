@@ -27,7 +27,7 @@ const App = () => {
 
 
   return (
-    <Router>
+    <Router basename="/test/">
       <Route exact path="/:language?/:section?/"
         render={ props => {
           if(!/^(en|zh)$/.test(props.match.params.language)){
