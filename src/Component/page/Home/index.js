@@ -8,10 +8,8 @@ const Home = props => {
     useEffect(()=>{ 
         let smooth = new SmoothScroll('#scrollWrap',(s, y, h) => {});
         smooth.on();
-        smooth.showScrollBar();
 
         return () => {
-            smooth.hideScrollBar();
             smooth.off();
             smooth = null;
         }
