@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { adjustFontSize } from './globalFunc';
-import AsyncLoadComponent from './Component/AsyncLoadComponent';
+import AsyncLoadComponent from './components/AsyncLoadComponent';
 
 // Async to load component
-const Nav = AsyncLoadComponent(import('./Component/Nav'));
-const Home = AsyncLoadComponent(import('./Component/page/Home'));
-const About = AsyncLoadComponent(import('./Component/page/About'));
+const Nav = AsyncLoadComponent(import('./components/Nav'));
+const Home = AsyncLoadComponent(import('./pages/Home'));
+const About = AsyncLoadComponent(import('./pages/About'));
 
 const App = () => {
   const language = useSelector(state => state.language);

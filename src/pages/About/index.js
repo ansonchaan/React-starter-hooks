@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { SmoothScroll } from '../../../globalFunc';
 import './about.scss';
 
 const About = props => {
     const count = useSelector(state => state.count);
+    const mainScroll = useRef(null);
 
     useEffect(()=>{ 
-        let smooth = new SmoothScroll('#scrollWrap',(s, y, h) => {});
+        let smooth = new SmoothScroll(mainScroll.current,(s, y, h) => {});
         smooth.on();
         smooth.showScrollBar();
 
@@ -20,7 +21,7 @@ const About = props => {
 
     return (
         <div id="about">
-            <div id="scrollWrap">
+            <div ref={mainScroll} id="mainScroll">
                 About {count}
             </div>
         </div>
