@@ -1,29 +1,25 @@
 import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { SmoothScroll } from '../../../globalFunc';
-import './about.scss';
+import LocomotiveScroll from 'locomotive-scroll';
 
 const About = props => {
     const count = useSelector(state => state.count);
-    const mainScroll = useRef(null);
+    const pageElem = useRef(null);
 
-    useEffect(()=>{ 
-        let smooth = new SmoothScroll(mainScroll.current,(s, y, h) => {});
-        smooth.on();
-        smooth.showScrollBar();
+    useEffect(()=>{
+        const scroll = new LocomotiveScroll({
+          el: pageElem.current,
+          smooth: true
+        });
 
         return () => {
-            smooth.hideScrollBar();
-            smooth.off();
-            smooth = null;
+          scroll.destroy();
         }
     },[])
 
     return (
-        <div id="about">
-            <div ref={mainScroll} id="mainScroll">
-                About {count}
-            </div>
+        <div ref={pageElem} id="about" className="page">
+            About {count}
         </div>
     )
 }

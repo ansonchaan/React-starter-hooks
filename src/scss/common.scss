@@ -28,9 +28,10 @@
         height:100%;
         position: relative;
         z-index: 1;
-      }
-      #mainScroll{
-        width:100%;
+        .page{
+          width: 100%;
+          min-height: 100vh;
+        }
       }
     }
   
