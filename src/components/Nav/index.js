@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-// import './nav.scss';
+import { motion } from 'framer-motion'
 
 const Nav = props => {
     const language = useSelector(state => state.language);

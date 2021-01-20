@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion'
 import { adjustFontSize } from './globalFunc';
 import AsyncLoadComponent from './components/AsyncLoadComponent';
 
@@ -11,7 +12,7 @@ const About = AsyncLoadComponent(import('./pages/About'));
 
 const App = () => {
   const language = useSelector(state => state.language);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const resize = () => {
     adjustFontSize();
@@ -25,7 +26,6 @@ const App = () => {
   },[]);
 
 
-
   return (
     <Router basename="/test/">
       <Route exact path="/:language?/:section?/"
@@ -35,18 +35,19 @@ const App = () => {
           }
 
           return (
-            <div id="bodyWrap" className={`body_wrap ${language}`}>
+            <div id="bodyWrap" className={`bodyWrap ${language}`}>
               <Nav {...props} />
-              <Switch>
-                <Route exact path="/:language/" component={Home} />
-                <Route exact path="/:language/about/" component={About} />
-                <Redirect from="*" to={`/${language}/`} />
-              </Switch>
+              <AnimatePresence initial={false} exitBeforeEnter>
+                <Switch location={props.location} key={props.location.pathname}>
+                  <Route exact path="/:language/" component={Home} />
+                  <Route exact path="/:language/about/" component={About} />
+                  <Redirect from="*" to={`/${language}/`} />
+                </Switch>
+              </AnimatePresence>
             </div>
           )
         }
-      }>
-      </Route>
+      }/>
     </Router>
   );
 }
