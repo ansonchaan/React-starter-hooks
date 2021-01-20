@@ -33,12 +33,12 @@ const App = () => {
           if(!/^(en|zh)$/.test(props.match.params.language)){
             return <Redirect from="*" to={`/${language}/`} />
           }
-
+          // console.log(props)
           return (
             <div id="bodyWrap" className={`bodyWrap ${language}`}>
               <Nav {...props} />
               <AnimatePresence initial={false} exitBeforeEnter>
-                <Switch location={props.location} key={props.location.pathname}>
+                <Switch location={props.location} key={props.match.params.section}>
                   <Route exact path="/:language/" component={Home} />
                   <Route exact path="/:language/about/" component={About} />
                   <Redirect from="*" to={`/${language}/`} />
